@@ -7,4 +7,4 @@ def get_page_content(id):
 
 
 if __name__ == "__main__":
-    get_content("57869261")
+    get_page_content("57869261")
