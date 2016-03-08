@@ -12,9 +12,9 @@ except ImportError:
 
 requests.packages.urllib3.disable_warnings()
 
-token = "wBrsHddX;gWJit7p%PM3n9Mm"
-user = "confluencebot"
-base_url = "https://fulcrumtech.atlassian.net/wiki/rest/api/content/"
+token = ""
+user = ""
+base_url = ""
 
 
 def load_file(fname):
