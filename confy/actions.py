@@ -10,7 +10,3 @@ def get_page_content(id):
     """
     data = _json.loads(_api.rest(id + "?expand=body.storage"))
     return data["body"]["storage"]["value"]
-
-
-if __name__ == "__main__":
-    get_page_content("57869261")
