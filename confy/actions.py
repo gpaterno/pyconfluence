@@ -10,3 +10,12 @@ def get_page_content(id):
     """
     data = _json.loads(_api.rest(id + "?expand=body.storage"))
     return data["body"]["storage"]["value"]
+
+
+def delete_page(id):
+    """Delete a page from Confluence.
+
+    Parameters:
+    - id: id of a Confluence page.
+    """
+    return _api.rest(id, "DELETE")
