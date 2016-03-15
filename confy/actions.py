@@ -2,14 +2,168 @@ import api as _api
 import json as _json
 
 
+def get_page_full(id):
+    """Return JSON containing information about page.
+
+    Parameters:
+    - id: id of a Confluence Page.
+
+    Example output:
+    {
+        "_expandable": {
+            "ancestors": "",
+            "children": "/rest/api/content/12456789/child",
+            "container": "/rest/api/space/TestChambers",
+            "descendants": "/rest/api/content/12456789/descendant",
+            "history": "/rest/api/content/12456789/history",
+            "metadata": "",
+            "operations": "",
+            "space": "/rest/api/space/TestChambers",
+            "version": ""
+        },
+        "_links": {
+            "base": "https://aperturescience.atlassian.net/wiki",
+            "collection": "/rest/api/content",
+            "context": "/wiki",
+            "self": "https://aperturescience.atlassian.net/wiki/rest/api/content/12456789",
+            "tinyui": "/x/glAdos",
+            "webui": "/display/TestChambers/Thinking+in+Portals"
+        },
+        "body": {
+            "_expandable": {
+                "anonymous_export_view": "",
+                "editor": "",
+                "export_view": "",
+                "styled_view": "",
+                "view": ""
+            },
+            "storage": {
+                "_expandable": {
+                    "content": "/rest/api/content/12456789"
+                },
+                "representation": "storage",
+                "value": "<p>Please assume the emergency party escort submission position.</p>"
+            }
+        },
+        "extensions": {
+            "position": "none"
+        },
+        "id": "12456789",
+        "status": "current",
+        "title": "Thinking in Portals",
+        "type": "page"
+    }
+    """
+    return _api.rest("/" + str(id) + "?expand=body.storage")
+
+
+def get_page_full_more(name, space):
+    """Return content different than returned from get_page_content, in JSON.
+
+    Parameters:
+    - name: name of a Confluence page.
+    - space: space the Confluence page is in.
+
+    Example output:
+    {
+        "_links": {
+            "base": "https://blackmesa.atlassian.net/wiki",
+            "context": "/wiki",
+            "self": "https://blackmesa.atlassian.net/wiki/rest/api/content?spaceKey=TheoreticalPhysics&expand=history&title=How%20to%20Tame%20Antlions"
+        },
+        "limit": 25,
+        "results": [
+            {
+                "_expandable": {
+                    "ancestors": "",
+                    "body": "",
+                    "children": "/rest/api/content/98765421/child",
+                    "container": "/rest/api/space/TheoreticalPhysics",
+                    "descendants": "/rest/api/content/98765421/descendant",
+                    "metadata": "",
+                    "operations": "",
+                    "space": "/rest/api/space/TheoreticalPhysics",
+                    "version": ""
+                },
+                "_links": {
+                    "self": "https://blackmesa.atlassian.net/wiki/rest/api/content/98765421",
+                    "tinyui": "/x/dGman",
+                    "webui": "/display/TheoreticalPhysics/How+to+Tame+Antlions"
+                },
+                "extensions": {
+                    "position": "none"
+                },
+                "history": {
+                    "_expandable": {
+                        "lastUpdated": "",
+                        "nextVersion": "",
+                        "previousVersion": ""
+                    },
+                    "_links": {
+                        "self": "https://blackmesa.atlassian.net/wiki/rest/api/content/98765421/history"
+                    },
+                    "createdBy": {
+                        "_links": {
+                            "self": "https://blackmesa.atlassian.net/wiki/rest/experimental/user?key=169636a0108150507f0ecc0002ff8088"
+                        },
+                        "displayName": "Gordon Freeman",
+                        "profilePicture": {
+                            "height": 48,
+                            "isDefault": false,
+                            "path": "/wiki/download/attachments/52625418/user-avatar",
+                            "width": 48
+                        },
+                        "type": "known",
+                        "userKey": "169636a0108150507f0ecc0002ff8088",
+                        "username": "the1freeman"
+                    },
+                    "createdDate": "2015-12-17T14:20:46.280-08:00",
+                    "latest": true
+                },
+                "id": "98765421",
+                "status": "current",
+                "title": "How to Tame Antlions",
+                "type": "page"
+            }
+        ],
+        "size": 1,
+        "start": 0
+    }
+    """
+    return _api.rest("?title=" + name.replace(" ", "%20") + "&spaceKey="
+                     "" + space + "&expand=history")
+
+
 def get_page_content(id):
     """Return XHTML content of a page.
 
     Parameters:
     - id: id of a Confluence page.
     """
-    data = _json.loads(_api.rest(id + "?expand=body.storage"))
+    data = _json.loads(_api.rest("/" + str(id) + "?expand=body.storage"))
     return data["body"]["storage"]["value"]
+
+
+def get_page_name(id):
+    """Return name of a page based on passed page id.
+
+    Parameters:
+    - id: id of a Confluence page.
+    """
+    data = _json.loads(_api.rest("/" + str(id) + "?expand=body.storage"))
+    return data["title"]
+
+
+def get_page_id(name, space):
+    """Return id of a page based on passed page name and space.
+
+    Parameters:
+    - name: name of a Confluence page.
+    - space: space the Confluence page is in.
+    """
+    data = _json.loads(_api.rest("?title=" + name.replace(" ", "%20") + "&"
+                       "spaceKey=" + space + "&expand=history"))
+    return data["results"][0]["id"]
 
 
 def delete_page(id):
@@ -18,4 +172,4 @@ def delete_page(id):
     Parameters:
     - id: id of a Confluence page.
     """
-    return _api.rest(id, "DELETE")
+    return _api.rest("/" + str(id), "DELETE")
