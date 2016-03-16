@@ -166,10 +166,33 @@ def get_page_id(name, space):
     return data["results"][0]["id"]
 
 
+def create_page(name, parent_id, space, content):
+    """Create a page in Confluence.
+
+    Parameters:
+    - name: name of the Confluence page to create.
+    - parent_id: ID of the intended parent of the page.
+    - space: key of the space where the page will be created.
+    - content: XHTML content to be written to the page.
+
+    Notes: the page id can be obtained by getting ["id"] from the returned JSON.
+    """
+    data = {}
+    data["type"] = "page"
+    data["title"] = name
+    data["ancestors"] = [{"id": str(parent_id)}]
+    data["space"] = {"key": space}
+    data["body"] = {"storage": {"value": content, "representation": "storage"}}
+    return _api.rest("/", "POST", _json.dumps(data))
+
+
 def delete_page(id):
     """Delete a page from Confluence.
 
     Parameters:
     - id: id of a Confluence page.
+
+    Notes:
+    - Getting a 204 error is expected! It means the page can no longer be found.
     """
     return _api.rest("/" + str(id), "DELETE")

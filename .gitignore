@@ -1,2 +1,4 @@
 confy/*.pyc
 confy/config.yml
+confy/tests.py
+
