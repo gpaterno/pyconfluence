@@ -1,4 +1,4 @@
-confy/*.pyc
-confy/config.yml
-confy/tests.py
+*.pyc
+config.yml
+tests.py
 
