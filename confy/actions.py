@@ -58,7 +58,7 @@ def get_page_full(id):
 
 
 def get_page_full_more(name, space):
-    """Return content different than returned from get_page_content, in JSON.
+    """Return content different than that from get_page_content, in JSON.
 
     Parameters:
     - name: name of a Confluence page.
