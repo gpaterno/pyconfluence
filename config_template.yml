@@ -1,4 +1,4 @@
-# Save this as "config.yml" when you've filled everything in.
+# Save this as "confy_config.yml" when you've filled everything in.
 
 base_url:       https://[org goes here].atlassian.net/wiki/rest/api/content
 user:           [user name goes here]
