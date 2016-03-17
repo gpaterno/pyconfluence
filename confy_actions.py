@@ -166,7 +166,16 @@ def get_page_id(name, space):
     return data["results"][0]["id"]
 
 
-def page_exists(name)
+def page_exists(name, space):
+    """Return True if named page currently exists in specified space.
+
+    Parameters:
+    - name: name of a Confluence page.
+    - space: space the Confluence page is in.
+    """
+    data = _json.loads(_api.rest("?title=" + name.replace(" ", "%20") + "&"
+                       "spaceKey=" + space + "&expand=history"))
+    return (data["size"] > 0)
 
 
 def create_page(name, parent_id, space, content):
