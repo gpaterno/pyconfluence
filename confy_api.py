@@ -28,7 +28,7 @@ def load_config():
         exit(1)
 
     try:
-        f = open("config.yml")
+        f = open("confy_config.yml")
         config_data = yaml.safe_load(f)
         f.close()
     except IOError:

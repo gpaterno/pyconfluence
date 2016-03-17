@@ -1,4 +1,4 @@
-import api as _api
+import confy_api as _api
 import json as _json
 
 
@@ -164,6 +164,9 @@ def get_page_id(name, space):
     data = _json.loads(_api.rest("?title=" + name.replace(" ", "%20") + "&"
                        "spaceKey=" + space + "&expand=history"))
     return data["results"][0]["id"]
+
+
+def page_exists(name)
 
 
 def create_page(name, parent_id, space, content):
