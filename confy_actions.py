@@ -178,6 +178,61 @@ def page_exists(name, space):
     return (data["size"] > 0)
 
 
+def get_page_children(id):
+    """Return list of a page's children.
+
+    Parameters:
+    - id: id of a Confluence page whose children you want information about.
+
+    Example output:
+    {
+        "_links": {
+            "base": "https://kingdomofhyrule.atlassian.net/wiki",
+            "context": "/wiki",
+            "self": "https://kingdomofhyrule.atlassian.net/wiki/rest/api/content/40842631/child/page"
+        },
+        "limit": 1000,
+        "results": [
+            {
+                "_expandable": {
+                    "ancestors": "",
+                    "body": "",
+                    "children": "/rest/api/content/40842631/child",
+                    "container": "/rest/api/space/GanonsStuff",
+                    "descendants": "/rest/api/content/40842631/descendant",
+                    "history": "/rest/api/content/40842631/history",
+                    "metadata": "",
+                    "operations": "",
+                    "space": "/rest/api/space/GanonsStuff",
+                    "version": ""
+                },
+                "_links": {
+                    "self": "https://fulcrumtech.atlassian.net/wiki/rest/api/content/40842631",
+                    "tinyui": "/x/DaLZe",
+                    "webui": "/display/GanonsStuff/My+favorite+evil+schemes"
+                },
+                "extensions": {
+                    "position": "none"
+                },
+                "id": "40842631",
+                "status": "current",
+                "title": "My favorite evil schemes",
+                "type": "page"
+            },
+            {...(to be continued!)
+            ...
+            ...
+            ...
+            }
+        ],
+        "size": 71,
+        "start": 0
+    }
+    """
+    data = _api.rest("/" + str(id) + "/child/page?limit=1000")
+    return data
+
+
 def create_page(name, parent_id, space, content):
     """Create a page in Confluence.
 
