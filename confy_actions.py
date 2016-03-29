@@ -263,3 +263,20 @@ def delete_page(id):
     - Getting a 204 error is expected! It means the page can no longer be found.
     """
     return _api.rest("/" + str(id), "DELETE")
+
+
+def delete_page_full(id):
+    """Delete a page from Confluence, along with its children.
+
+    Parameters:
+    - id: id of a Confluence page.
+
+    Notes:
+    - Getting a 204 error is expected! It means the page can no longer be found.
+    """
+    children = _json.loads(get_page_children(id))
+
+    for i in children["results"]:
+        delete_page_full(i["id"])
+
+    return _api.rest("/" + str(id), "DELETE")

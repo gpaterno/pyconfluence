@@ -68,10 +68,10 @@ def _rest(req, url, data=None):
         return ""
 
     status, body = _api_action(cmd, url, data)
-    if int(status) == 200:
+    if (int(status) > 200 or int(status) < 226):
         return body
     else:
-        print("Oops!  Error: status: %s\n%s\n" % (status, body))
+        print("Oops! Error: status: %s\n%s\n" % (status, body))
 
 
 def _api_action(cmd, url, data=None):
