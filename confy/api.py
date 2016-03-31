@@ -28,13 +28,13 @@ def load_config():
         exit(1)
 
     try:
-        f = open("confy_config.yml")
+        f = open("confy/confy_config.yml")
         config_data = yaml.safe_load(f)
         f.close()
     except IOError:
-        sys.stderr.write("There is no config.yml in the directory. Create one "
-                         "and then try again.\nFor reference, check config_"
-                         "template.yml and follow the listed guidelines.\n")
+        sys.stderr.write("You have not updated your Confluence credentials."
+                         "Run update_credentials with appropriate data and try"
+                         " again.")
         exit(1)
 
     global token

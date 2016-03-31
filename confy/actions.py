@@ -1,8 +1,8 @@
-import confy_api as _api
+import api as _api
 import json as _json
 
 
-def update_credentials(base_url, user, token):
+def update_credentials(org, user, token):
     """Update credentials for use with Confy.
 
     Parameters:
@@ -11,10 +11,10 @@ def update_credentials(base_url, user, token):
     - user: username of the user that will be utilzing Confy.
     - token: API token for use with Confy.
     """
-    with open("confy_config.yml", "w+") as config:
-        config.write("base_url: " + base_url)
-        config.write("user: " + user)
-        config.write("token: " + token)
+    with open("confy/confy_config.yml", "w+") as config:
+        config.write("base_url: https://" + org + ".atlassian.net/wiki/rest/api/content\n")
+        config.write("user: " + user + "\n")
+        config.write("token: " + token + "\n")
 
 
 def get_page_full(id):
