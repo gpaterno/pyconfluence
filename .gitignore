@@ -3,4 +3,4 @@ confy_config.yml
 tests.py
 *.egg-info/
 dist/
-confy/confy_config.yml
+pyconfy/confy_config.yml

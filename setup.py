@@ -1,8 +1,8 @@
 from setuptools import setup
 setup(
-    name = 'confy',
-    packages = ['confy'],
-    version = '0.2',
+    name = 'pyconfy',
+    packages = ['pyconfy'],
+    version = '0.3',
     description = 'An API wrapper for Atlassian Confluence',
     author = 'Caleb Hawkins',
     author_email = 'hawkins.caleb93@gmail.com',
