@@ -1,4 +1,5 @@
 *.pyc
+pyconfy/*.pyc
 confy_config.yml
 tests.py
 *.egg-info/

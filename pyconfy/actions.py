@@ -10,7 +10,7 @@ def update_credentials(org, user, token):
     - user: username of the user that will be utilzing Confy.
     - token: API token for use with Confy.
     """
-    with open("confy/confy_config.yml", "w+") as config:
+    with open("pyconfy/confy_config.yml", "w+") as config:
         config.write("base_url: https://" + org + ".atlassian.net/wiki/rest/api/content\n")
         config.write("user: " + user + "\n")
         config.write("token: " + token + "\n")

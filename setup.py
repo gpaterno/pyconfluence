@@ -6,8 +6,8 @@ setup(
     description = 'An API wrapper for Atlassian Confluence',
     author = 'Caleb Hawkins',
     author_email = 'hawkins.caleb93@gmail.com',
-    url = 'https://github.com/muddytm/confy',
-    download_url = 'https://github.com/muddytm/confy/tarball/0.2',
+    url = 'https://github.com/muddytm/pyconfy',
+    download_url = 'https://github.com/muddytm/pyconfy/tarball/0.2',
     keywords = ['confluence'],
     classifiers = [],
 )
