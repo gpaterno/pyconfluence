@@ -2,6 +2,10 @@
 PyConfluence REST API wrapper ("Pyco")
 ======================================
 
+.. image:: https://travis-ci.org/Muddytm/pyconfluence.svg
+   :target: https://travis-ci.org/Muddytm/pyconfluence
+   :alt: Travis build status
+
 .. _Twitter: https://twitter.com/MuddyTM
 
 .. _blog: http://muddytm.github.io/
