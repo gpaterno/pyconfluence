@@ -2,20 +2,6 @@ import api as _api
 import json as _json
 
 
-def update_credentials(org, user, token):
-    """Update credentials for use with Confy.
-    Parameters:
-    - base_url: base url for your organization's Confluence wiki.
-      Ex. https://spaceballsthewiki.atlassian.net/wiki/rest/api/content
-    - user: username of the user that will be utilzing Confy.
-    - token: API token for use with Confy.
-    """
-    with open("pyconfy/confy_config.yml", "w+") as config:
-        config.write("base_url: https://" + org + ".atlassian.net/wiki/rest/api/content\n")
-        config.write("user: " + user + "\n")
-        config.write("token: " + token + "\n")
-
-
 def get_page_full(id):
     """Return JSON containing information about page.
     Parameters:
@@ -282,4 +268,3 @@ def delete_page_full(id):
         delete_page_full(i["id"])
 
     return _api.rest("/" + str(id), "DELETE")
-

@@ -1,7 +1,5 @@
 *.pyc
-pyconfy/*.pyc
-confy_config.yml
+pyconfluence/*.pyc
 tests.py
 *.egg-info/
 dist/
-pyconfy/confy_config.yml
