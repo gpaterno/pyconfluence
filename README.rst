@@ -132,6 +132,6 @@ out **pyconfluence/actions.py**.
 You've reached the end!
 ---------------
 
-Time for some self-promotion!
+So...time for some self-promotion!
 
 Follow me on Twitter_, and/or check out my blog_!
