@@ -8,7 +8,7 @@ except ImportError:
     sys.stderr.write("You do not have the 'requests' module installed. "
                      "Please see http://docs.python-requests.org/en/latest/ "
                      "for more information.")
-    exit(1)
+    sys.exit("Error")
 
 
 requests.packages.urllib3.disable_warnings()
@@ -18,16 +18,23 @@ user = ""
 base_url = ""
 
 
-def load_config():
+def load_variables():
     """Load variables from environment variables."""
+
+    if (not os.environ.get("PYCONFLUENCE_TOKEN") or
+            not os.environ.get("PYCONFLUENCE_USER") or
+            not os.environ.get("PYCONFLUENCE_ORG")):
+        print ("One or more pyconfluence environment variables are not set. "
+               "See README for directions on how to resolve this.")
+        sys.exit("Error")
 
     global token
     global user
     global base_url
     token = os.environ["PYCONFLUENCE_TOKEN"]
     user = os.environ["PYCONFLUENCE_USER"]
-    base_url = ("https://" + os.environ["PYCONFLUENCE_ORG"] + ".atlassian.net/"
-                "wiki/rest/api/content")
+    base_url = ("https://" + os.environ["PYCONFLUENCE_ORG"] + ".atlassian"
+                ".net/wiki/rest/api/content")
 
 
 def rest(url, req='get', data=None):
@@ -35,7 +42,7 @@ def rest(url, req='get', data=None):
     send a request using method 'req' and to the url. the _rest() function
     will add the base_url to this, so 'url' should be something like '/ips'.
     """
-    load_config()
+    load_variables()
 
     return _rest(req, base_url + url, data)
 
