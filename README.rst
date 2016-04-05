@@ -95,34 +95,34 @@ Below I will list the current functions for PyConfluence. I'll be updating this
 list as long as the script itself is being updated. For more information, check
 out **pyconfluence/actions.py**.
 
-- create_page(name, parent_id, space, content)
+- **create_page(name, parent_id, space, content)**:
   Create a page in Confluence.
 
-- delete_page(id)
+- **delete_page(id)**:
   Delete a page from Confluence.
 
-- delete_page_full(id)
+- **delete_page_full(id)**:
   Delete a page from Confluence, along with its children.
 
-- get_page_full(id)
+- **get_page_full(id)**:
   Return JSON containing information about page.
 
-- get_page_full_more(name, space)
+- **get_page_full_more(name, space)**:
   Return content different than that from get_page_content, in JSON.
 
-- get_page_content(id)
+- **get_page_content(id)**:
   Return XHTML content of a page.
 
-- get_page_name(id)
+- **get_page_name(id)**:
   Return name of a page based on passed page id.
 
-- get_page_id(name, space)
+- **get_page_id(name, space)**:
   Return id of a page based on passed page name and space.
 
-- page_exists(name, space)
+- **page_exists(name, space)**:
   Return True if named page currently exists in specified space.
 
-- get_page_children(id)
+- **get_page_children(id)**:
   Return list of a page's children as JSON.
 
 You've reached the end!
