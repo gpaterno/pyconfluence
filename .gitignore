@@ -3,3 +3,4 @@ pyconfluence/*.pyc
 tests.py
 *.egg-info/
 dist/
+pyconfluence/__pycache__/

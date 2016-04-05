@@ -1,4 +1,4 @@
-import api as _api
+import pyconfluence.api as _api
 import json as _json
 
 
