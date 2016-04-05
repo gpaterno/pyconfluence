@@ -174,7 +174,7 @@ def page_exists(name, space):
 
 
 def get_page_children(id):
-    """Return list of a page's children.
+    """Return list of a page's children as JSON.
     Parameters:
     - id: id of a Confluence page whose children you want information about.
     Example output:
