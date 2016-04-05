@@ -36,7 +36,9 @@ environment variables. Here's the step-by-step process:
 2. In that file, input the following lines (with appropriate credentials):
 
     export PYCONFLUENCE_USER=[username for Confluence account]
+
     export PYCONFLUENCE_TOKEN=[password for Confluence account]
+
     export PYCONFLUENCE_ORG=[organization name; found in "https://[org].atlassian.net/wiki/..." URL]
 
 3. Save the file, then add this to ".bash_profile" in your home directory ("~/.bash_profile"):
