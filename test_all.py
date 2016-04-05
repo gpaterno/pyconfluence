@@ -39,13 +39,13 @@ def run():
                "well done! You have failed spectacularly. Incoming crash...")
 
     print ("Getting page data list #1: ")
-    print pyco.get_page_full(page_id)
+    print (pyco.get_page_full(page_id))
 
     print ("Getting page data list #2: ")
-    print pyco.get_page_full_more(page_name, space)
+    print (pyco.get_page_full_more(page_name, space))
 
     print ("Getting page content: ")
-    print pyco.get_page_content(page_id)
+    print (pyco.get_page_content(page_id))
 
     child_content = ("I am a child page! Look at me!")
 
@@ -56,7 +56,7 @@ def run():
     pyco.create_page("Child page dos", page_id, space, child_content)
 
     print ("Here are the children belonging to " + page_name + ": ")
-    print pyco.get_page_children(page_id)
+    print (pyco.get_page_children(page_id))
 
     print ("Deleting child page dos...")
     pyco.delete_page(pyco.get_page_id("Child page dos", space))
