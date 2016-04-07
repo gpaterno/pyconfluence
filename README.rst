@@ -8,8 +8,8 @@ PyConfluence REST API wrapper ("Pyco")
 .. image:: https://img.shields.io/badge/python-2.6%2C%202.7%2C%203.3%2C%203.4%2C%203.5-orange.svg
    :target: https://img.shields.io/badge/python-2.6%2C%202.7%2C%203.3%2C%203.4%2C%203.5-orange
 
-.. image:: https://travis-ci.org/Muddytm/pyconfluence.svg
-   :target: https://travis-ci.org/Muddytm/pyconfluence
+.. image:: https://travis-ci.org/FulcrumIT/pyconfluence.svg
+   :target: https://travis-ci.org/FulcrumIT/pyconfluence
    :alt: Travis build status
 
 .. _Twitter: https://twitter.com/MuddyTM
