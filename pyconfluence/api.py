@@ -63,6 +63,7 @@ def _rest(req, url, data=None):
         return body
     else:
         print("Oops! Error: status: %s\n%s\n" % (status, body))
+        return body
 
 
 def _api_action(cmd, url, data=None):
@@ -75,7 +76,7 @@ def _api_action(cmd, url, data=None):
         response = requests.get(url, headers=requisite_headers, auth=auth)
     elif cmd == "PUT":
         response = requests.put(url, headers=requisite_headers, auth=auth,
-                                params=data)
+                                data=data)
     elif cmd == "POST":
         response = requests.post(url, headers=requisite_headers, auth=auth,
                                  data=data)

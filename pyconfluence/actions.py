@@ -244,6 +244,30 @@ def create_page(name, parent_id, space, content):
     return _api.rest("/", "POST", _json.dumps(data))
 
 
+def edit_page(id, name, space, content):
+    """Update a page in Confluence.
+    Parameters:
+    - id: ID of the page you wish to edit.
+    - name: name you would like to give to the page (usually the same name).
+    - space: space where the page lives.
+    - content: XHTML content to be written to the page.
+    Notes: it is required to try an initial update to find the page version.
+    """
+    data = {}
+    data["id"] = str(id)
+    data["type"] = "page"
+    data["title"] = name
+    data["space"] = {"key": space}
+    data["body"] = {"storage": {"value": content, "representation": "storage"}}
+    data["version"] = {"number": 1}
+
+    response = _api.rest("/" + str(id), "PUT", _json.dumps(data))
+    new_version = int(_json.loads(response)["message"].split()[-1]) + 1
+    data["version"]["number"] = new_version
+
+    return _api.rest("/" + str(id), "PUT", _json.dumps(data))
+
+
 def delete_page(id):
     """Delete a page from Confluence.
     Parameters:
