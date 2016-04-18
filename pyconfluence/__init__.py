@@ -1,2 +1,1 @@
 from pyconfluence.actions import *
-
