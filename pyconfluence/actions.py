@@ -262,7 +262,7 @@ def edit_page(id, name, space, content):
     data["version"] = {"number": 1}
 
     response = _api.rest("/" + str(id), "PUT", _json.dumps(data))
-    new_version = int(_json.loads(response)["message"].split()[-1]) + 1
+    new_version = int(response["message"].split()[-1]) + 1
     data["version"]["number"] = new_version
 
     return _api.rest("/" + str(id), "PUT", _json.dumps(data))
