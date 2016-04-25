@@ -10,6 +10,7 @@ PYCONFLUENCE_TEST_PARENT_ID: the ID of the parent page you want to test under.
 import pyconfluence as pyco
 import os
 
+
 def run():
     """Commence testing!"""
 
