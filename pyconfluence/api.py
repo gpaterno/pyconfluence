@@ -20,7 +20,6 @@ base_url = ""
 
 def load_variables():
     """Load variables from environment variables."""
-
     if (not os.environ.get("PYCONFLUENCE_TOKEN") or
             not os.environ.get("PYCONFLUENCE_USER") or
             not os.environ.get("PYCONFLUENCE_ORG")):
@@ -37,49 +36,49 @@ def load_variables():
                 ".net/wiki/rest/api/content")
 
 
-def rest(url, req='get', data=None):
+def rest(url, req="GET", data=None):
     """Main function to be called from this module.
+
     send a request using method 'req' and to the url. the _rest() function
     will add the base_url to this, so 'url' should be something like '/ips'.
     """
     load_variables()
 
-    return _rest(req, base_url + url, data)
+    return _rest(base_url + url, req, data)
 
 
-def _rest(req, url, data=None):
+def _rest(url, req, data=None):
     """Send a rest rest request to the server."""
-
-    if 'HTTPS' not in url.upper():
+    if url.upper().startswith("HTTPS"):
         print("Secure connection required: Please use HTTPS or https")
         return ""
 
-    cmd = req.upper()
-    if cmd != "GET" and cmd != "PUT" and cmd != "POST" and cmd != "DELETE":
+    req = req.upper()
+    if req != "GET" and req != "PUT" and req != "POST" and req != "DELETE":
         return ""
 
-    status, body = _api_action(cmd, url, data)
+    status, body = _api_action(url, req, data)
     if (int(status) >= 200 and int(status) <= 226):
         return body
     else:
         return body
 
 
-def _api_action(cmd, url, data=None):
+def _api_action(url, req, data=None):
     """Take action based on what kind of request is needed."""
     requisite_headers = {'Accept': 'application/json',
                          'Content-Type': 'application/json'}
     auth = (user, token)
 
-    if cmd == "GET":
+    if req == "GET":
         response = requests.get(url, headers=requisite_headers, auth=auth)
-    elif cmd == "PUT":
+    elif req == "PUT":
         response = requests.put(url, headers=requisite_headers, auth=auth,
                                 data=data)
-    elif cmd == "POST":
+    elif req == "POST":
         response = requests.post(url, headers=requisite_headers, auth=auth,
                                  data=data)
-    elif cmd == "DELETE":
+    elif req == "DELETE":
         response = requests.delete(url, headers=requisite_headers, auth=auth)
 
     return response.status_code, response.text

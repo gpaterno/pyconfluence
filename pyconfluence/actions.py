@@ -291,4 +291,4 @@ def delete_page_full(id):
     for i in children["results"]:
         delete_page_full(i["id"])
 
-    return _api.rest("/" + str(id), "DELETE")
+    return delete_page(id)

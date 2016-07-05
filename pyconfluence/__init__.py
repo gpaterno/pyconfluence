@@ -1,1 +1,1 @@
-from pyconfluence.actions import *
+from pyconfluence.actions import *  # noqa
