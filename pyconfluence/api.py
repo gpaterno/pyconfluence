@@ -22,7 +22,7 @@ def load_variables():
     """Load variables from environment variables."""
     if (not os.environ.get("PYCONFLUENCE_TOKEN") or
             not os.environ.get("PYCONFLUENCE_USER") or
-            not os.environ.get("PYCONFLUENCE_ORG")):
+            not os.environ.get("PYCONFLUENCE_BASEURL")):
         print ("One or more pyconfluence environment variables are not set. "
                "See README for directions on how to resolve this.")
         sys.exit("Error")
@@ -32,8 +32,7 @@ def load_variables():
     global base_url
     token = os.environ["PYCONFLUENCE_TOKEN"]
     user = os.environ["PYCONFLUENCE_USER"]
-    base_url = ("https://" + os.environ["PYCONFLUENCE_ORG"] + ".atlassian"
-                ".net/wiki/rest/api/content")
+    base_url = ("https://" + os.environ["PYCONFLUENCE_BASEURL"] + "/rest/api/content")
 
 
 def rest(url, req="GET", data=None):
@@ -49,7 +48,7 @@ def rest(url, req="GET", data=None):
 
 def _rest(url, req, data=None):
     """Send a rest rest request to the server."""
-    if url.upper().startswith("HTTPS"):
+    if not url.upper().startswith("HTTPS"):
         print("Secure connection required: Please use HTTPS or https")
         return ""
 
@@ -71,14 +70,14 @@ def _api_action(url, req, data=None):
     auth = (user, token)
 
     if req == "GET":
-        response = requests.get(url, headers=requisite_headers, auth=auth)
+        response = requests.get(url, headers=requisite_headers, auth=auth, verify=False)
     elif req == "PUT":
         response = requests.put(url, headers=requisite_headers, auth=auth,
-                                data=data)
+                                data=data, verify=False)
     elif req == "POST":
         response = requests.post(url, headers=requisite_headers, auth=auth,
-                                 data=data)
+                                 data=data, verify=False)
     elif req == "DELETE":
-        response = requests.delete(url, headers=requisite_headers, auth=auth)
+        response = requests.delete(url, headers=requisite_headers, auth=auth, verify=False)
 
     return response.status_code, response.text

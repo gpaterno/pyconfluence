@@ -1,3 +1,21 @@
+Modifications
+=============
+
+This script has been modified from the original pyconfluence
+to be able to handle on-prem Confluence systems.
+
+What has changed:
+
+* The env variable PYCONFLUENCE_BASEURL has been introduced to point to the confluence
+  server hostname
+* SSL verification has been disabled
+* The env variable PYCONFLUENCE_ORG has been removed
+
+Fixed an issue where a "not" clause not being evaluated
+Thanks to the original developer for this fantastic code.
+
+
+
 ======================================
 PyConfluence REST API wrapper ("Pyco")
 ======================================
